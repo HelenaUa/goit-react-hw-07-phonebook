@@ -1,15 +1,18 @@
 import ListItem from 'components/ListItem/ListItem';
 import { useSelector, useDispatch } from "react-redux";
-import { deleteContact } from 'redux/contactsSlice';
-import { getContacts, getFilter } from 'redux/selectors';
+import { deleteContact } from 'redux/operations';
+import { selectContacts, selectFilterValue } from 'redux/selectors';
 
 
 export default function ContactList() {
 
     const dispatch = useDispatch();
-    const contacts = useSelector(getContacts);
-    const filterValue = useSelector(getFilter);
-    const onDelete = contactID => dispatch(deleteContact(contactID));
+    const contacts = useSelector(selectContacts);
+    const filterValue = useSelector(selectFilterValue);
+    // const onDelete = contactID => dispatch(deleteContact(contactID));
+    const onDelete = (id) => {
+        dispatch(deleteContact(id))
+    };
 
     const contactsFilter = () => {
         const filterNormalize = filterValue.toLowerCase();
@@ -26,8 +29,8 @@ export default function ContactList() {
                     <ListItem key={item.name}
                         name={item.name}
                         number={item.number}
-                        onDeleteContact={() => onDelete(item.name)}
-                        contactID={item.name}
+                        onDeleteContact={() => onDelete(item.id)}
+                        // contactID={item.name}
                     />
                 )
             })}

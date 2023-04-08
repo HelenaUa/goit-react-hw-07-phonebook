@@ -1,16 +1,16 @@
 import { Input } from './Filter.styled';
 import { useDispatch, useSelector } from "react-redux";
-import { filterContact } from 'redux/contactsSlice';
-import { getFilter } from 'redux/selectors';
+import { setStatusFilter } from 'redux/filtersSlice';
+import { selectFilterValue } from 'redux/selectors';
 
 
 export default function Filter() {
     const dispatch = useDispatch();
 
-    const onFilter = useSelector(getFilter);
+    const onFilter = useSelector(selectFilterValue);
 
     const onChange = e => {
-        dispatch(filterContact(e.currentTarget.value))
+        dispatch(setStatusFilter(e.currentTarget.value))
     };
 
 

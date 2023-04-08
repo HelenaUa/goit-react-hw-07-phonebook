@@ -4,8 +4,8 @@ import { Formik, ErrorMessage } from 'formik';
 import { FormCon, Input, Btn, LabelStyle } from './ContactForm.styled';
 import { useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { addContact } from 'redux/contactsSlice';
-import { getContacts } from 'redux/selectors';
+import { addContact } from 'redux/operations';
+import { selectContacts } from 'redux/selectors';
 
 
 // const schema = Yup.object().shape({
@@ -33,7 +33,7 @@ export default function ContactForm() {
     const onChangeNumber = e => setNumber(e.currentTarget.value);
 
     const dispatch = useDispatch();
-    const contacts = useSelector(getContacts);
+    const contacts = useSelector(selectContacts);
  
  const handleSubmit = (event) => {
     //  event.preventDefault();

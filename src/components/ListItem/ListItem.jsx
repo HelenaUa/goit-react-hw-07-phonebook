@@ -6,7 +6,7 @@ export default function ListItem({ name, number, onDeleteContact }) {
     
     return (
         <li>
-            <span>{name}:</span>
+            <span>{name}: </span>
             <span>{number}</span>
             <BtnDel type="button" onClick={onDeleteContact}>Delete</BtnDel>
         </li>
@@ -14,7 +14,7 @@ export default function ListItem({ name, number, onDeleteContact }) {
 };
 
 ListItem.propTypes = {
-    name: PropTypes.string.isRequired,
-    number: PropTypes.string.isRequired,
+    name: PropTypes.string,
+    number: PropTypes.string,
     deleteContact: PropTypes.func,
 };
