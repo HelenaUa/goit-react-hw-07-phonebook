@@ -27,10 +27,10 @@ import { selectContacts } from 'redux/selectors';
 
 export default function ContactForm() {
     const [name, setName] = useState('');
-    const [number, setNumber] = useState('');
+    const [phone, setPhone] = useState('');
 
     const onChangeName = e => setName(e.currentTarget.value);
-    const onChangeNumber = e => setNumber(e.currentTarget.value);
+    const onChangePhone = e => setPhone(e.currentTarget.value);
 
     const dispatch = useDispatch();
     const contacts = useSelector(selectContacts);
@@ -41,7 +41,7 @@ export default function ContactForm() {
      const newContact = {
       id: nanoid(),
       name,
-      number,
+      phone,
     };
 
     if (contacts.some(contact => contact.name === name)) {
@@ -50,11 +50,11 @@ export default function ContactForm() {
      };
      dispatch(addContact(newContact));
      setName('');
-     setNumber('');
+     setPhone('');
     };
     
     return (
-        <Formik initialValues={{ name: '', number: '' }}
+        <Formik initialValues={{ name: '', phone: '' }}
             // validationSchema={schema}
             onSubmit={handleSubmit}>
             <FormCon autoComplete="off">
@@ -71,18 +71,18 @@ export default function ContactForm() {
                     />
                     <ErrorMessage name="name" component="div" />
                 </LabelStyle>
-                <LabelStyle htmlFor="number">
+                <LabelStyle htmlFor="phone">
                     Number
                     <Input
                         type="tel"
-                        name="number"
-                        value={number}
-                        onChange={onChangeNumber}
+                        name="phone"
+                        value={phone}
+                        onChange={onChangePhone}
                         pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
                         title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
                         required
                     />
-                    <ErrorMessage name="number" component="div" />
+                    <ErrorMessage name="phone" component="div" />
                 </LabelStyle>
                 <Btn type="submit">Add contact</Btn>
             </FormCon>

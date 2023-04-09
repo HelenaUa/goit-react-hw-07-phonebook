@@ -30,7 +30,7 @@ export default function ContactList() {
                 return (
                     <ListItem key={item.name}
                         name={item.name}
-                        number={item.number}
+                        phone={item.phone}
                         onDeleteContact={() => onDelete(item.id)}
                         // contactID={item.name}
                     />
